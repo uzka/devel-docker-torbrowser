@@ -1,10 +1,23 @@
 #!/bin/bash
 CONFIGDIR=$HOME/.dockerconfig/torbrowser
 mkdir -p $CONFIGDIR
+
+
+if [[ "$@" = "" ]]
+then
+	FLAGS=""
+else
+	FLAGS=""
+fi
+
+mkdir -p /tmp/torbrowser-$USER
 docker run \
 	--rm \
 	--net=host \
 	--env="DISPLAY" \
 	--volume="$HOME/.Xauthority:/root/.Xauthority:ro" \
-	uzka/torbrowser
+	--volume="/tmp/torbrowser-$USER:/home/anon/tor-browser_en-US/Browser/Downloads:rw" \
+	$FLAGS \
+	uzka/torbrowser \
+	firefox $@
 	

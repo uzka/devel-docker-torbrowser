@@ -50,4 +50,10 @@ RUN wget -nv --no-check-certificate -O tor-browser.tar.xz $URL \
 	&& rm tor-browser.tar.xz tor-browser.tar.xz.asc key.asc \
 	&& ln -s tor-browser_* tor-browser
 
+ENV HOME=/home/$USER
+
+RUN mkdir .config
+RUN echo 'XDG_DOCUMENTS_DIR="$HOME"' > .config/user-dirs.dirs
+RUN echo 'XDG_DOWNLOADS_DIR="$HOME"' >> .config/user-dirs.dirs
+
 CMD firefox
