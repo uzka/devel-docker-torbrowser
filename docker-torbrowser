@@ -1,0 +1,10 @@
+#!/bin/bash
+CONFIGDIR=$HOME/.dockerconfig/torbrowser
+mkdir -p $CONFIGDIR
+docker run \
+	--rm \
+	--net=host \
+	--env="DISPLAY" \
+	--volume="$HOME/.Xauthority:/root/.Xauthority:ro" \
+	uzka/torbrowser
+	
